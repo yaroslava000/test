@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Counter = () => {
     const[count, setCount] = useState(0)
@@ -8,6 +8,20 @@ const Counter = () => {
     const increment = () => {
         setCount(prevCount => prevCount + 1)
     }
+
+    useEffect(() => {
+        console.log('Counter.componentDidMount')
+        return () => {
+            console.log('Counter.componentWillUnmount')
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log('Counter.componentDidUpdate.count', count)
+    }, [count])
+
+    console.log('Counter.render')
+    
 
     return (
         <div>
